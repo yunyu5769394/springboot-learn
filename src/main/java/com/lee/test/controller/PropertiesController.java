@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by Donghua.Chen on 2018/6/1.
+ * 读取自定义properties的demo
  */
 @RequestMapping("/properties")
 @RestController
