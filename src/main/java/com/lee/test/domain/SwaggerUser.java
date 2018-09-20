@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 @ApiModel
 @Table(name = "user")
-public class User implements Serializable {
+public class SwaggerUser implements Serializable {
 
     private static final long serialVersionUID = 8655851615465363473L;
 
@@ -23,15 +23,15 @@ public class User implements Serializable {
     @ApiModelProperty("密码")
     private String password;
 
-    public User() {
+    public SwaggerUser() {
     }
 
-    public User(String username, String password) {
+    public SwaggerUser(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public User(Long id, String username, String password) {
+    public SwaggerUser(Long id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
