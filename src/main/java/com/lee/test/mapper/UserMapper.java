@@ -1,6 +1,6 @@
 package com.lee.test.mapper;
 
-import com.lee.test.domain.User;
+import com.lee.test.domain.SwaggerUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -15,7 +15,7 @@ import java.util.List;
  *
  */
 @Mapper
-public interface UserMapper extends BaseMapper<User> {
+public interface UserMapper extends BaseMapper<SwaggerUser> {
 
 
     /**
@@ -26,17 +26,17 @@ public interface UserMapper extends BaseMapper<User> {
      * @return 查询结果
      */
     @Select("SELECT * FROM user WHERE username = #{username}")
-    List<User> findByUsername(@Param("username") String username);
+    List<SwaggerUser> findByUsername(@Param("username") String username);
 
 
     /**
      * 使用xml方式
      * 保存用户信息
      *
-     * @param user 用户信息
+     * @param swaggerUser 用户信息
      * @return 成功 1 失败 0
      */
-    int addUser(User user);
+    int addUser(SwaggerUser swaggerUser);
 
     /**
      * 根据用户名统计（TODO 假设它是一个很复杂的SQL）

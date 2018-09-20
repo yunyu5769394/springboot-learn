@@ -1,5 +1,6 @@
 package com.lee.test;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +16,7 @@ import java.util.Arrays;
  */
 @RestController
 @SpringBootApplication
+@MapperScan("com.lee.test.dao")
 public class TestApplication {
 
     public static void main(String[] args) {
@@ -23,7 +25,7 @@ public class TestApplication {
 
     @GetMapping("/demo1")
     public String demo1() {
-        return "Hello Luis";
+        return "Hello Lee";
     }
 
 //    @Bean
