@@ -1,6 +1,6 @@
 package com.lee.test.service.impl;
 
-import com.lee.test.service.MyAccessDecisionManager;
+import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
@@ -16,7 +16,7 @@ import java.util.Iterator;
  * @Create : 2018-09-20 10:43
  **/
 @Service
-public class MyAccessDecisionManagerImpl implements MyAccessDecisionManager {
+public class MyAccessDecisionManagerImpl implements AccessDecisionManager {
     // decide 方法是判定是否拥有权限的决策方法，
     //authentication 是释CustomUserService中循环添加到 GrantedAuthority 对象中的权限信息集合.
     //object 包含客户端发起的请求的requset信息，可转换为 HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();

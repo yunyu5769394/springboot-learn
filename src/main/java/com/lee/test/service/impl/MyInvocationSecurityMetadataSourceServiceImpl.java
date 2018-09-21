@@ -2,11 +2,11 @@ package com.lee.test.service.impl;
 
 import com.lee.test.dao.PermissionDao;
 import com.lee.test.domain.Permission;
-import com.lee.test.service.MyInvocationSecurityMetadataSourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
+import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ import java.util.*;
  * @Create : 2018-09-20 10:50
  **/
 @Service
-public class MyInvocationSecurityMetadataSourceServiceImpl implements MyInvocationSecurityMetadataSourceService {
+public class MyInvocationSecurityMetadataSourceServiceImpl implements FilterInvocationSecurityMetadataSource {
     @Autowired
     private PermissionDao permissionDao;
 

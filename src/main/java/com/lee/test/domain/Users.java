@@ -7,11 +7,12 @@ import java.util.List;
  * @Create : 2018-09-19 17:42
  **/
 public class Users {
+
     private Integer id;
     private String username;
     private String password;
-
     private List<Authorities> authorities;
+    private String method;
 
     public Integer getId() {
         return id;
@@ -43,5 +44,13 @@ public class Users {
 
     public void setAuthorities(List<Authorities> authorities) {
         this.authorities = authorities;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
     }
 }

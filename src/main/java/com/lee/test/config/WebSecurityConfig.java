@@ -1,15 +1,15 @@
 package com.lee.test.config;
 
-import com.lee.test.service.MyFilterSecurityInterceptor;
+import com.lee.test.service.impl.MyFilterSecurityInterceptorImpl;
+import com.lee.test.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.ForwardAuthenticationSuccessHandler;
 
@@ -21,7 +21,7 @@ import org.springframework.security.web.authentication.ForwardAuthenticationSucc
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
+    private MyFilterSecurityInterceptorImpl myFilterSecurityInterceptor;
 
     @Autowired
     private UserDetailsService customUserService;
@@ -31,9 +31,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        return new CustomUserServiceImpl();
 //    }
 
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(customUserService); //user Details Service验证
+//    }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserService); //user Details Service验证
+        auth.userDetailsService(customUserService).passwordEncoder(new PasswordEncoder(){
+
+            @Override
+            public String encode(CharSequence rawPassword) {
+                return MD5Util.encode((String)rawPassword);
+            }
+
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                return encodedPassword.equals(MD5Util.encode((String)rawPassword));
+            }}); //user Details Service验证
     }
 
     @Override
@@ -55,8 +69,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
     }
 
-    @Bean
-    public static NoOpPasswordEncoder passwordEncoder() {
-        return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
-    }
+//    @Bean
+//    public static NoOpPasswordEncoder passwordEncoder() {
+//        return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
+//    }
 }

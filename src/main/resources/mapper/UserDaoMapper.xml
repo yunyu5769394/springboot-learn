@@ -10,6 +10,10 @@
         </collection>
     </resultMap>
 
+    <insert id="addUser">
+    INSERT INTO user(username,password) VALUES(#{username},#{password})
+    </insert>
+
     <select id="findByUserName" parameterType="String" resultMap="userMap">
         select u.*,r.name
         from user u

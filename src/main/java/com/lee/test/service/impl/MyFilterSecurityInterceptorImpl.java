@@ -1,7 +1,5 @@
 package com.lee.test.service.impl;
 
-import com.lee.test.service.MyAccessDecisionManager;
-import com.lee.test.service.MyFilterSecurityInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.SecurityMetadataSource;
 import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
@@ -18,13 +16,13 @@ import java.io.IOException;
  * @Create : 2018-09-20 10:34
  **/
 @Service
-public class MyFilterSecurityInterceptorImpl extends AbstractSecurityInterceptor implements MyFilterSecurityInterceptor {
+public class MyFilterSecurityInterceptorImpl extends AbstractSecurityInterceptor implements Filter {
 
     @Autowired
     private FilterInvocationSecurityMetadataSource securityMetadataSource;
 
     @Autowired
-    public void setMyAccessDecisionManager(MyAccessDecisionManager myAccessDecisionManager) {
+    public void setMyAccessDecisionManager(MyAccessDecisionManagerImpl myAccessDecisionManager) {
         super.setAccessDecisionManager(myAccessDecisionManager);
     }
 
